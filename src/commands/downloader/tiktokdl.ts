@@ -1,4 +1,4 @@
-import { Cooldown, Ctx } from "@mengkodingan/ckptw";
+import { bold, Cooldown, Ctx } from "@mengkodingan/ckptw";
 import axios from "axios";
 
 module.exports = {
@@ -17,17 +17,27 @@ module.exports = {
             let { data } = await axios('https://api.tiklydown.eu.org/api/download?url=' + url);
 
             if(!data.images && !data.video) return ctx.react(ctx.id!, '❌');
+
+            let caption = `${data.title}
+                    
+👍 ${bold(data.stats.likeCount + " Likes")}
+🔁 ${bold(data.stats.shareCount + " Shares")}
+💬 ${bold(data.stats.commentCount + " Comments")}
+🔄️ ${bold(data.stats.playCount + " Views")}
+🔖 ${bold(data.stats.saveCount + " Saves")}`;
             
             if(data.video) {
                 let { data: cover } = await axios(data.video.origin_cover, {
                     responseType: 'arraybuffer'
                 });
 
-                ctx.reply({ video: { url: data.video.noWatermark }, caption: data.title, jpegThumbnail: cover });
+                ctx.reply({ video: { url: data.video.noWatermark }, caption, jpegThumbnail: cover });
             } else if(data.images) {
-                data.images.map((img: { url: string }) => {
-                    ctx.reply({ image: { url: img.url }, caption: data.title });
-                });
+                await Promise.all(data.images.map(async (img: { url: string }) => {
+                    await ctx.sendMessage(ctx.id!, { image: { url: img.url }, jpegThumbnail: '' });
+                }));
+
+                ctx.reply({ text: caption });
             }
         } catch (err) {
             ctx.react(ctx.id!, '❌');
