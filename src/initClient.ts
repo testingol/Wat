@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { Client } from "@mengkodingan/ckptw";
 import axios from 'axios';
 import FileType from 'file-type';
