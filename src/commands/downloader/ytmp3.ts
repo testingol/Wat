@@ -8,6 +8,7 @@ module.exports = {
     description: "Youtube to MP3.",
     cooldown: 5,
     category: "downloader",
+    hidden: true,
     code: async(ctx: Ctx) => {
         const cd = new Cooldown(ctx, 5000);
         if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');

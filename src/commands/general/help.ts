@@ -8,6 +8,7 @@ interface CommandDetail {
     cooldown?: number;
     category?: string;
     args?: Array<string>;
+    hidden?: boolean;
 }
 
 module.exports = {
@@ -55,6 +56,7 @@ ${x.description || "none"}
                     if(!cmds[categoryCapitalized]) {
                         cmds[categoryCapitalized] = [x.name];
                     } else {
+                        if(x.hidden) return;
                         cmds[categoryCapitalized].push(x.name);
                     }
                 });
