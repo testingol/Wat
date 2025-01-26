@@ -11,9 +11,11 @@ interface ExtendedClient extends Client {
 
 const bot = new Client({
     prefix: /^[°•π÷×¶∆£¢€¥®™✓=|~zZ+×_*!#%^&./\\©^]/,
-    printQRInTerminal: true,
+    printQRInTerminal: false,
     readIncommingMsg: true,
+    usePairingCode: true,
     selfReply: true,
+    phoneNumber: process.env.BOT_PHONE_NUMBER,
 }) as ExtendedClient;
 
 bot.getFile = async (path) => {
