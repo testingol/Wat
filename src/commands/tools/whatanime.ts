@@ -23,7 +23,7 @@ module.exports = {
             let uploaded = await upload(buffer);
             let { data } = await axios(`https://api.trace.moe/search?anilistInfo&url=${encodeURIComponent(uploaded)}`);
 
-            ctx.reply({ video: { url: data.result[0].video }, caption: `${bold(`${data.result[0].anilist.title.native} (${data.result[0].anilist.title.romaji})`)}
+            ctx.reply({ image: { url: data.result[0].image }, caption: `${bold(`${data.result[0].anilist.title.native} (${data.result[0].anilist.title.romaji})`)}
 
 🔗 https://anilist.co/anime/${data.result[0].anilist.id}
 🕒 Episode ${data.result[0].episode}, di ${new Date(data.result[0].from * 1000).toISOString().substr(11, 8)}
