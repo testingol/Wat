@@ -1,9 +1,6 @@
 import { bold, Cooldown, Ctx } from "@mengkodingan/ckptw";
-import { Sticker, StickerTypes } from 'wa-sticker-formatter';
-import config from "../../../config";
 import { upload } from "../../lib/upload";
-import filetype from 'file-type'
-import { messageTypeFromBuffer } from "../../util";
+import { messageTypeFromBuffer } from "../../lib/util";
 import axios from "axios";
 
 module.exports = {
