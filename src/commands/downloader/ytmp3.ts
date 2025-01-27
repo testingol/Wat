@@ -1,7 +1,5 @@
 import { Cooldown, Ctx } from "@mengkodingan/ckptw";
-
-// @ts-ignore
-import ytdl from 'node-yt-dl';
+import axios from "axios";
 
 module.exports = {
     name: "ytmp3",
@@ -17,10 +15,8 @@ module.exports = {
             if(!ctx.args.length) return ctx.react(ctx.id!, '❌');
             let url = ctx.args[0];
 
-            let { media } = await ytdl.mp3(url);
-
-            if(!media) return ctx.react(ctx.id!, '❌');
-            ctx.reply({ audio: { url: media } });
+            let { data } = await axios('https://ytdl.axeel.my.id/api/download/audio?url=' + url);
+            await ctx.reply({ audio: { url: data.downloads.url } });
         } catch (err) {
             ctx.react(ctx.id!, '❌');
             console.log("[TIKTOKDL ERR]", err)

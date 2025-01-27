@@ -1,7 +1,5 @@
 import { Cooldown, Ctx } from "@mengkodingan/ckptw";
-
-// @ts-ignore
-import ytdl from 'node-yt-dl';
+import axios from "axios";
 
 module.exports = {
     name: "ytmp4",
@@ -17,10 +15,8 @@ module.exports = {
             if(!ctx.args.length) return ctx.react(ctx.id!, '❌');
             let url = ctx.args[0];
 
-            let { media } = await ytdl.mp4(url);
-
-            if(!media) return ctx.react(ctx.id!, '❌');
-            ctx.reply({ video: { url: media } });
+            let { data } = await axios('https://ytdl.axeel.my.id/api/download/video?url=' + url);
+            ctx.reply({ video: { url: data.downloads.url } });
         } catch (err) {
             ctx.react(ctx.id!, '❌');
             console.log("[TIKTOKDL ERR]", err)
