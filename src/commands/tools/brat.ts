@@ -5,7 +5,7 @@ import config from "../../../config";
 module.exports = {
     name: "brat",
     aliases: ['sbrat', 'stikerbrat', 'stickerbrat'],
-    description: "Buat sticke brat.",
+    description: "Buat sticker brat.",
     cooldown: 4,
     category: "tools",
     code: async(ctx: Ctx) => {
@@ -14,12 +14,6 @@ module.exports = {
 
         try {
             if(!ctx.args.length) return ctx.react(ctx.id as string, "❌");
-
-            // let response = await axios.get(`https://brat.caliphdev.com/api/brat?text=${ctx.args.join(' ')}`);
-            // let buffer = response.data;
-
-            // console.log(buffer)
-            // if(!buffer) return ctx.react(ctx.id as string, "❌");
 
             const sticker = new Sticker(`https://brat.caliphdev.com/api/brat?text=${encodeURIComponent(ctx.args.join(' '))}`, {
                 pack: config.sticker.pack,
