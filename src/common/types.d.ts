@@ -5,6 +5,7 @@ export interface Config {
     commandHandlerLog: boolean;
     botOwnerID: Array<string>;
     hasteServer: string;
+    sticker: { pack: string; author: string }
 }
 
 interface ExtendedClient extends Client {

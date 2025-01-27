@@ -1,5 +1,6 @@
 import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
 import { Sticker, StickerTypes } from 'wa-sticker-formatter';
+import config from "../../../config";
 
 module.exports = {
     name: "sticker",
@@ -16,8 +17,8 @@ module.exports = {
             if(!buffer) return ctx.react(ctx.id as string, "❌");
 
             const sticker = new Sticker(buffer as any, {
-                pack: 'npmjs.com/@mengkodingan/ckptw',
-                author: 'bot gawul',
+                pack: config.sticker.pack,
+                author: config.sticker.author,
                 type: StickerTypes.FULL,
                 categories: [],
                 id: ctx.id!,

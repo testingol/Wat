@@ -11,6 +11,10 @@ module.exports = {
         phoneNumber: process.env.BOT_PHONE_NUMBER,
     },
     commandHandlerLog: true,
-    botOwnerID: process.env.BOT_OWNER_ID.split(", "),
-    hasteServer: process.env.HASTE_SERVER
+    botOwnerID: process.env.BOT_OWNER_ID?.split(", "),
+    hasteServer: process.env.HASTE_SERVER,
+    sticker: {
+        pack: 'npmjs.com/@mengkodingan/ckptw',
+        author: 'github.com/mengkodingan/ckptw'
+    }
 }

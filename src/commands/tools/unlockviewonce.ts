@@ -1,11 +1,14 @@
-import { Ctx, MessageType } from "@mengkodingan/ckptw";
+import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
 
 module.exports = {
     name: "unlockviewonce",
     description: "Membuka view once.",
-    cooldown: 5000,
+    cooldown: 5,
     category: "tools",
     code: async(ctx: Ctx) => {
+        const cd = new Cooldown(ctx, 5000);
+        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+
         try {
             let quoted = ctx.quoted.viewOnceMessageV2?.message as any;
             let messageType = ctx.getContentType(quoted) as any;
