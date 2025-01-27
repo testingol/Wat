@@ -8,6 +8,7 @@ module.exports = {
     description: "Buat sticker video brat.",
     cooldown: 4,
     category: "tools",
+    args: ["<argument>"],
     code: async(ctx: Ctx) => {
         const cd = new Cooldown(ctx, 4000);
         if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');

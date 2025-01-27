@@ -7,6 +7,7 @@ module.exports = {
     description: "Send a get request to the requested url.",
     cooldown: 1,
     category: "tools",
+    args: ["<argument>"],
     code: async(ctx: any) => {
         const cd = new Cooldown(ctx, 1000);
         if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
