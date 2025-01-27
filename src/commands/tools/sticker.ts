@@ -31,7 +31,7 @@ module.exports = {
                     cap.reverse();
                 }
                 
-                buffer = `https://api.memegen.link/images/custom/${cap[0]}/${cap[1]}.png?background=${uploaded}?font=impact` as any
+                buffer = `https://api.memegen.link/images/custom/${encodeURIComponent(cap[0])}/${encodeURIComponent(cap[1])}.png?background=${uploaded}?font=impact` as any
             }
             
             const sticker = new Sticker(buffer as any, {
