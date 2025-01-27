@@ -2,6 +2,7 @@ import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
 import { Sticker, StickerTypes } from 'wa-sticker-formatter';
 import config from "../../../config";
 import { upload } from "../../lib/upload";
+import filetype from 'file-type'
 
 module.exports = {
     name: "sticker",
@@ -17,8 +18,10 @@ module.exports = {
         try {
             let buffer = await ctx.msg.media.toBuffer() || await ctx.quoted.media.toBuffer();
             if(!buffer) return ctx.react(ctx.id as string, "❌");
+        
+            let bufferType = await filetype.fromBuffer(buffer as any);
 
-            if(ctx.args.length) {
+            if(ctx.args.length && bufferType?.ext !== 'mp4') {
                 let uploaded = await upload(buffer);
                 let cap = ctx.args.join(" ").split("|");
 
