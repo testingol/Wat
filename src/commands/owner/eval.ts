@@ -1,6 +1,7 @@
 import { Ctx, monospace } from "@mengkodingan/ckptw";
 import { hastebin } from "../../lib/hastebin";
 import dotenv from "dotenv";
+import config from "../../../config";
 dotenv.config();
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
     cooldown: 0,
     category: "owner",
     code: async(ctx: Ctx) => {
-        if (!process.env.BOT_OWNER_ID?.split(", ").includes(ctx.sender.decodedJid?.replace("@s.whatsapp.net", "")!)) return;
+        if (!config.botOwnerID.includes(ctx.sender.decodedJid?.replace("@s.whatsapp.net", "")!)) return;
         let code = ctx.args.join(" ").replace(/```(?:[^\s]+\n)?(.*?)\n?```/gm, (_, a) => a);
 
         try {

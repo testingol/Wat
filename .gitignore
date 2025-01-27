@@ -3,3 +3,4 @@
 /state
 .env
 start.sh
+config.js

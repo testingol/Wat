@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "packageManager": "pnpm@9.8.0",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
-    "start": "npm run build && node ."
+    "build": "pnpm run clean && tsc",
+    "start": "pnpm run build && node ."
   },
   "keywords": [],
   "author": "",

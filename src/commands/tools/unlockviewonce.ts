@@ -3,8 +3,8 @@ import { Ctx, MessageType } from "@mengkodingan/ckptw";
 module.exports = {
     name: "unlockviewonce",
     description: "Membuka view once.",
-    cooldown: 0,
-    category: "owner",
+    cooldown: 5000,
+    category: "tools",
     code: async(ctx: Ctx) => {
         try {
             let quoted = ctx.quoted.viewOnceMessageV2?.message as any;
