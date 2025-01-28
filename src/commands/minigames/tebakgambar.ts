@@ -4,10 +4,10 @@ import axios from "axios";
 module.exports = {
     name: "tebakgambar",
     description: "Minigames tebak gambar.",
-    cooldown: 1,
+    cooldown: 5,
     category: "minigames",
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 1000);
+        const cd = new Cooldown(ctx, 5000);
         if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
 
         try {
