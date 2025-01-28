@@ -5,10 +5,15 @@ import { Client } from "@mengkodingan/ckptw";
 import axios from 'axios';
 import FileType from 'file-type';
 import fs from 'fs';
+import path from 'path';
 import config from '../config';
 import { ExtendedClient } from './common/types';
+import { QuickDB } from 'quick.db';
 
 const bot = new Client(config.client) as ExtendedClient;
+const db = new QuickDB({ filePath: path.resolve() + '/database/main.sqlite' });
+
+bot.db = db;
 
 bot.getFile = async (path) => {
     let res;

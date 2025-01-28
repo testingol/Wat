@@ -67,6 +67,7 @@ ${x.description || "none"}
                     "Owner": "🤖",
                     "Downloader": "📥",
                     "Minigames": "🎮",
+                    "Grup": "👥",
                     "Tidak Ada Category": "❓"
                 }
 
