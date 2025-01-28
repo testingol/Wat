@@ -15,6 +15,7 @@ module.exports = {
             if(!ctx.isGroup()) return ctx.react(ctx.id!, '❌');
 
             let members = await bot.db.get(`groups.${ctx.decodedId?.replace("@g.us", "")}`);
+            members = members.filter((x: { id: string }) => ctx.decodeJid(x.id) !== ctx.decodeJid(ctx._client.user?.id!));
             members = members.sort((a: any, b: any) => a.sent - b.sent);
 
             let group = await ctx.group().metadata();
