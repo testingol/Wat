@@ -66,6 +66,7 @@ ${x.description || "none"}
                     "Tools": "✂",
                     "Owner": "🤖",
                     "Downloader": "📥",
+                    "Minigames": "🎮",
                     "Tidak Ada Category": "❓"
                 }
 

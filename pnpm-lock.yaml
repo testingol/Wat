@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@mengkodingan/ckptw':
-        specifier: ^4.4.1
-        version: 4.4.1(eslint@8.57.1)(jimp@0.16.1)(link-preview-js@3.0.13)(typescript@5.5.4)
+        specifier: ^4.4.3
+        version: 4.4.3(eslint@8.57.1)(jimp@0.16.1)(link-preview-js@3.0.13)(typescript@5.5.4)
       '@whiskeysockets/baileys':
         specifier: ^6.7.5
         version: 6.7.5(jimp@0.16.1)(link-preview-js@3.0.13)(qrcode-terminal@0.12.0)
@@ -281,8 +281,8 @@ packages:
   '@jimp/utils@0.16.13':
     resolution: {integrity: sha512-VyCpkZzFTHXtKgVO35iKN0sYR10psGpV6SkcSeV4oF7eSYlR8Bl6aQLCzVeFjvESF7mxTmIiI3/XrMobVrtxDA==}
 
-  '@mengkodingan/ckptw@4.4.1':
-    resolution: {integrity: sha512-BvkySxwJKC/Njw+XnYCvaJJ1gopwGXP+v9NbTHKF5sVarrY3C5IfBWUFH0tuvb+LZCM0eDDRHpicxi4kvM9nTQ==}
+  '@mengkodingan/ckptw@4.4.3':
+    resolution: {integrity: sha512-cqKkDloZykZSK6OzAhXVyTWG8G8j71mvfMFi5Gz5js0crD7wzD8lfNbZzaONzbnyH0YK6MDVqnyfhBSof+44hA==}
     peerDependencies:
       jimp: ^0.16.1
       link-preview-js: ^3.0.0
@@ -1997,7 +1997,7 @@ snapshots:
       '@babel/runtime': 7.26.7
       regenerator-runtime: 0.13.11
 
-  '@mengkodingan/ckptw@4.4.1(eslint@8.57.1)(jimp@0.16.1)(link-preview-js@3.0.13)(typescript@5.5.4)':
+  '@mengkodingan/ckptw@4.4.3(eslint@8.57.1)(jimp@0.16.1)(link-preview-js@3.0.13)(typescript@5.5.4)':
     dependencies:
       '@discordjs/collection': 1.5.3
       '@hapi/boom': 10.0.1
