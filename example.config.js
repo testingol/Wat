@@ -9,6 +9,7 @@ module.exports = {
         usePairingCode: true,
         selfReply: true,
         phoneNumber: process.env.BOT_PHONE_NUMBER,
+        autoMention: true
     },
     commandHandlerLog: true,
     botOwnerID: process.env.BOT_OWNER_ID?.split(", "),
