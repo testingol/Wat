@@ -1,6 +1,6 @@
 import { Ctx } from "@mengkodingan/ckptw";
 import dotenv from "dotenv";
-import config from "../../../config";
+import generateMessage from "../../lib/generateMessage";
 dotenv.config();
 
 module.exports = {
@@ -8,13 +8,13 @@ module.exports = {
     description: "🤔",
     aliases: ['htg'],
     cooldown: 0,
-    category: "owner",
+    category: "grup",
     code: async(ctx: Ctx) => {        
         try {
             const members = await ctx.group().members();
 
             let isSenderAdmin = members.filter((x) => x.id === ctx.sender.decodedJid && (x.admin === 'admin' || x.admin === 'superadmin'));
-            if (!isSenderAdmin.length && !config.botOwnerID.includes(ctx.sender.decodedJid?.replace("@s.whatsapp.net", "")!)) return;
+            if (!isSenderAdmin.length) return ctx.reply(generateMessage('onlyAdmin', { ctx }));
             
             ctx.sendMessage(ctx.id!, { text: ctx.args.join(" ") || String.fromCharCode(8206).repeat(4001), mentions: members.map(m => m.id) })
         } catch (err) {
