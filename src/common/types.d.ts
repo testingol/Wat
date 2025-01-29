@@ -13,6 +13,7 @@ export interface Config {
         error: string;
         onlyOwner: string;
         onlyGroup: string;
+        onlyAdmin: string;
         maxCharacter: string;
     };
 }

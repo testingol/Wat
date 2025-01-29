@@ -13,7 +13,12 @@ module.exports = {
         if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
         
         try {
-            if(!ctx.isGroup()) return ctx.react(ctx.id!, '❌');
+            if(!ctx.isGroup()) return ctx.reply(generateMessage('onlyGroup', { ctx }));
+
+            const groupMembers = await ctx.group().members();
+            let isSenderAdmin = groupMembers.filter((x) => x.id === ctx.sender.decodedJid && (x.admin === 'admin' || x.admin === 'superadmin'));
+
+            if (!isSenderAdmin.length) return ctx.reply(generateMessage('onlyAdmin', { ctx }));
 
             let members = await bot.db.get(`groups.${ctx.decodedId?.replace("@g.us", "")}`);
             members = members.filter((x: { id: string }) => ctx.decodeJid(x.id) !== ctx.decodeJid(ctx._client.user?.id!));
