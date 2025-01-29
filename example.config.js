@@ -24,6 +24,7 @@ module.exports = {
         error: "❌ Terjadi kesalahan saat menjalankan perintah.",
         onlyOwner: "❌ Perintah ini hanya bisa dijalankan oleh pemilik bot.",
         onlyGroup: "❌ Perintah ini hanya bisa dijalankan di dalam grup.",
+        onlyAdmin: "❌ Perintah ini hanya bisa dijalankan oleh admin grup.",
         maxCharacter: "❌ Teks terlalu panjang! Maksimal {max_character} karakter.",
     }
 }
