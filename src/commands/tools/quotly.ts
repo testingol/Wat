@@ -27,7 +27,7 @@ module.exports = {
                 quality: 50,
             });
 
-            return ctx.reply(await sticker.toMessage());
+            return ctx.sendMessage(ctx.id!, await sticker.toMessage());
         } catch (err) {
             console.log("[QUOTLY ERR]", err)
         }
