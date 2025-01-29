@@ -1,6 +1,8 @@
 import { Cooldown, Ctx, italic, MessageType } from "@mengkodingan/ckptw";
 import { Sticker, StickerTypes } from 'wa-sticker-formatter';
 import config from "../../../config";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "quotly",
@@ -9,14 +11,13 @@ module.exports = {
     category: "tools",
     args: ["<username>|<argument>"],
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 4000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
-            if(!ctx.args.length) return ctx.react(ctx.id as string, "❌");
+            if(!ctx.args.length) return ctx.reply(generateMessage('invalidUsage', { ctx, args: module.exports.args.join(" ") }));
             let [username, message] = ctx.args.join(' ').split("|");
 
-            if(!username || !message) return ctx.reply(italic(`❌ Contoh penggunaan: ${ctx._used.prefix}${ctx._used.command} username|lucu`))
+            if(!username || !message) return ctx.reply(generateMessage('invalidUsage', { ctx, args: 'siapa kek|haha lucu' }));
 
             const sticker = new Sticker(`https://fastrestapis.fasturl.cloud/maker/quotly?name=${encodeURIComponent(username)}&text=${encodeURIComponent(message)}&bgColor=%23FFFFFF`, {
                 pack: config.sticker.pack,
@@ -29,6 +30,7 @@ module.exports = {
 
             return ctx.sendMessage(ctx.id!, await sticker.toMessage());
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[QUOTLY ERR]", err)
         }
     }

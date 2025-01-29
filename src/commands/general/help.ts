@@ -1,5 +1,7 @@
-import { bold, Cooldown, Ctx, inlineCode, italic } from "@mengkodingan/ckptw";
+import { bold, Ctx, inlineCode, italic } from "@mengkodingan/ckptw";
 import ms from "ms";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 interface CommandDetail {
     name: string;
@@ -19,8 +21,7 @@ module.exports = {
     category: "general",
     args: ["<command?>"],
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 1000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
             let allCommandsValue = Array.from(ctx._self.cmd?.values() as unknown as ArrayLike<unknown>) as Array<CommandDetail>;
@@ -78,6 +79,7 @@ ${x.description || "none"}
                 ctx.reply(text);
             }
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[HELP ERR]", err)
         }
     }

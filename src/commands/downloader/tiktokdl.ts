@@ -1,22 +1,25 @@
-import { bold, Cooldown, Ctx } from "@mengkodingan/ckptw";
+import { bold, Ctx, italic } from "@mengkodingan/ckptw";
 import axios from "axios";
+import generateMessage from "../../lib/generateMessage";
+import makeCooldown from "../../lib/makeCooldown";
 
 module.exports = {
     name: "tiktokdl",
+    aliases: ['ttdl'],
     description: "Tiktok downloader.",
     cooldown: 5,
     category: "downloader",
+    args: ["<url>"],
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 5000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
-            if(!ctx.args.length) return ctx.react(ctx.id!, '❌');
+            if(!ctx.args.length) return ctx.reply(generateMessage('invalidUsage', { ctx, args: module.exports.args.join(" ") }));
             let url = ctx.args[0];
 
             let { data } = await axios('https://api.tiklydown.eu.org/api/download?url=' + url);
 
-            if(!data.images && !data.video) return ctx.react(ctx.id!, '❌');
+            if(!data.images && !data.video) return ctx.reply(italic(`❌ Video atau foto tidak ditemukan.`));
 
             let caption = `${data.title}
                     
@@ -40,7 +43,7 @@ module.exports = {
                 ctx.reply({ text: caption });
             }
         } catch (err) {
-            ctx.react(ctx.id!, '❌');
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[TIKTOKDL ERR]", err)
         }
     }

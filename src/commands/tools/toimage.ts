@@ -1,4 +1,6 @@
-import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
+import { Cooldown, Ctx, italic, MessageType } from "@mengkodingan/ckptw";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "toimage",
@@ -7,15 +9,15 @@ module.exports = {
     cooldown: 1,
     category: "tools",
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 1000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
             const buff = await ctx.quoted.media.toBuffer();
-            if(!buff) return ctx.react(ctx.id!, '❌');
+            if(!buff) return ctx.reply(italic('❌ Reply ke sticker saat menggunakan command ini.'));
 
             ctx.reply({ image: buff, mimetype : "image/png" });
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[TOIMAGE ERR]", err)
         }
     }

@@ -1,4 +1,6 @@
 import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "unlockviewonce",
@@ -6,8 +8,7 @@ module.exports = {
     cooldown: 5,
     category: "tools",
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 5000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
             let quoted = ctx.quoted.viewOnceMessageV2?.message as any;
@@ -25,6 +26,7 @@ module.exports = {
                 ctx.reply({ video: buffer });
             }
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[VIEWONCE ERR]", err)
         }
     }

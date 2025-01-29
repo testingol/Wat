@@ -1,5 +1,7 @@
 import { bold, Cooldown, Ctx, italic } from "@mengkodingan/ckptw";
 import bot from "../../client";
+import generateMessage from "../../lib/generateMessage";
+import makeCooldown from "../../lib/makeCooldown";
 
 module.exports = {
     name: "topsider",
@@ -8,8 +10,7 @@ module.exports = {
     cooldown: 1,
     category: "grup",
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 1000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
         
         try {
             if(!ctx.isGroup()) return ctx.react(ctx.id!, '❌');
@@ -36,6 +37,7 @@ module.exports = {
 
             ctx.reply(text)
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[TOPSIDER ERR]", err)
         }
     }

@@ -1,19 +1,20 @@
 import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
 import axios from "axios";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "get",
     aliases: ['fetch'],
     description: "Send a get request to the requested url.",
-    cooldown: 1,
+    cooldown: 5,
     category: "tools",
     args: ["<argument>"],
     code: async(ctx: any) => {
-        const cd = new Cooldown(ctx, 1000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
-            if(!ctx.args.length) return ctx.react(ctx.id as string, "❌");
+            if(!ctx.args.length) return ctx.reply(generateMessage('invalidUsage', { ctx, args: module.exports.args.join(" ") }));
 
             let { href } = new URL(ctx.args[0])
             let res = await axios.get(href);
@@ -27,6 +28,7 @@ module.exports = {
                 }
             }
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[GET ERR]", err)
         }
     }

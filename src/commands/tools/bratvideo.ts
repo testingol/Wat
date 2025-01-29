@@ -1,6 +1,8 @@
 import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
 import { Sticker, StickerTypes } from 'wa-sticker-formatter';
 import config from "../../../config";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "bratvideo",
@@ -10,12 +12,11 @@ module.exports = {
     category: "tools",
     args: ["<argument>"],
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 4000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
-            if(!ctx.args.length) return ctx.react(ctx.id as string, "❌");
-            if(ctx.args.length > 5000) return ctx.reply("❌ max 5000 karakter bang.")
+            if(!ctx.args.length) return ctx.reply(generateMessage('invalidUsage', { ctx, args: module.exports.args.join(" ") }));
+            if(ctx.args.length > 5000) return ctx.reply(generateMessage('maxCharacter', { ctx, args: module.exports.args.join(" "), max_character: 5000 }));
 
             const sticker = new Sticker(`https://brat.caliphdev.com/api/brat/animate?text=${encodeURIComponent(ctx.args.join(' '))}`, {
                 pack: config.sticker.pack,
@@ -28,6 +29,7 @@ module.exports = {
 
             return ctx.reply(await sticker.toMessage());
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[BRAT ERR]", err)
         }
     }

@@ -1,8 +1,10 @@
-import { Cooldown, Ctx, MessageType } from "@mengkodingan/ckptw";
+import { Cooldown, Ctx, italic, MessageType } from "@mengkodingan/ckptw";
 import { Sticker, StickerTypes } from 'wa-sticker-formatter';
 import config from "../../../config";
 import { upload } from "../../lib/upload";
 import filetype from 'file-type'
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "sticker",
@@ -12,12 +14,11 @@ module.exports = {
     category: "tools",
     args: ["<argument?>"],
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 1000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
-
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
+        
         try {
             let buffer = await ctx.msg.media.toBuffer() || await ctx.quoted.media.toBuffer();
-            if(!buffer) return ctx.react(ctx.id as string, "❌");
+            if(!buffer) return ctx.reply(italic('❌ Reply ke media atau jadikan sebagai caption.'));
         
             let bufferType = await filetype.fromBuffer(buffer as any);
 
@@ -45,6 +46,7 @@ module.exports = {
 
             return ctx.reply(await sticker.toMessage());
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[STICKER ERR]", err)
         }
     }

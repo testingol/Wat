@@ -1,5 +1,7 @@
 import { bold, Cooldown, Ctx, italic, monospace } from "@mengkodingan/ckptw";
 import axios from "axios";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "ttslontong",
@@ -7,8 +9,7 @@ module.exports = {
     cooldown: 5,
     category: "minigames",
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 5000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
             let { data } = await axios('https://api.dotmydotid.my.id/api/ttslontong');
@@ -34,6 +35,7 @@ module.exports = {
                 ctx.sendMessage(ctx.id!, { text: `Timeout! Tidak ada yang bisa menjawab dengan benar.\n\n${italic(`Jawabannya itu ${bold(answer.toUpperCase())}, alesannya ${selected.reason.toUpperCase()} 😹`)}` }, { quoted: botSent });
             });
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[TTSLONTONG ERR]", err)
         }
     }

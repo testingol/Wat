@@ -1,5 +1,7 @@
 import { bold, Cooldown, Ctx, italic } from "@mengkodingan/ckptw";
 import axios from "axios";
+import makeCooldown from "../../lib/makeCooldown";
+import generateMessage from "../../lib/generateMessage";
 
 module.exports = {
     name: "tebakgambar",
@@ -7,8 +9,7 @@ module.exports = {
     cooldown: 5,
     category: "minigames",
     code: async(ctx: Ctx) => {
-        const cd = new Cooldown(ctx, 5000);
-        if(cd.onCooldown) return ctx.react(ctx.id!, '⏰');
+        if(module.exports.cooldown && makeCooldown(ctx, module.exports.cooldown)) return;
 
         try {
             let { data } = await axios('https://api.dotmydotid.my.id/api/tebakgambar');
@@ -36,6 +37,7 @@ ${italic('Jawab tebak gambar ini, dengan mengetikan langsung jawaban. Batas wakt
                 ctx.sendMessage(ctx.id!, { text: `Timeout! Tidak ada yang bisa menjawab dengan benar.\n\n${italic(`Jawaban Tebak Gambar level ${selected.level} no ${selected.no}: ${selected.jawaban}`)}` }, { quoted: botSent });
             });
         } catch (err) {
+            ctx.reply(generateMessage('error', { ctx }));
             console.log("[TEBAKGAMBAR ERR]", err)
         }
     }
