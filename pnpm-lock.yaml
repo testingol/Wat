@@ -11,9 +11,6 @@ importers:
       '@mengkodingan/ckptw':
         specifier: ^4.4.4
         version: 4.4.4(eslint@8.57.1)(jimp@0.16.1)(link-preview-js@3.0.13)(typescript@5.5.4)
-      '@whiskeysockets/baileys':
-        specifier: ^6.7.5
-        version: 6.7.5(jimp@0.16.1)(link-preview-js@3.0.13)(qrcode-terminal@0.12.0)
       axios:
         specifier: ^1.7.3
         version: 1.7.3
@@ -449,23 +446,6 @@ packages:
   '@wasm-audio-decoders/ogg-vorbis@0.1.15':
     resolution: {integrity: sha512-skAN3NIrRzMkVouyfyq3gYT/op/K9iutMZr7kr5/9fnIaCnpYdrdbv69X8PZ6y3K2J5zy5KuGno5kzH8yGLOOg==}
 
-  '@whiskeysockets/baileys@6.7.5':
-    resolution: {integrity: sha512-5kDwir6wT1BY0aIdsJXDAHoq7Gy3oYwRXj3qFoS6MOC0udzF4e2D4vTbA/LVLg7a54dtDxXj+iEnrWcaE9jQZA==}
-    peerDependencies:
-      jimp: ^0.16.1
-      link-preview-js: ^3.0.0
-      qrcode-terminal: ^0.12.0
-      sharp: ^0.32.2
-    peerDependenciesMeta:
-      jimp:
-        optional: true
-      link-preview-js:
-        optional: true
-      qrcode-terminal:
-        optional: true
-      sharp:
-        optional: true
-
   '@whiskeysockets/baileys@6.7.9':
     resolution: {integrity: sha512-+23DOlzgRYvDYPq5qTDRCho6EqyRMaSWL2OadvhY+nE4Ew8HCNTwpDASIaGoFPqGyQgzAJUNgwOFvBsdJlORpA==}
     peerDependencies:
@@ -543,9 +523,6 @@ packages:
   async@0.2.10:
     resolution: {integrity: sha512-eAkdoKxU6/LkKDBzLpT+t6Ff5EtfSF4wx1WfJiPEEV7WNLnDaRXk0oVysiEPm262roaachGexwUv94WhSgN5TQ==}
 
-  async@3.2.3:
-    resolution: {integrity: sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g==}
-
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
@@ -609,9 +586,6 @@ packages:
 
   buffer@6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
-
-  cache-manager@4.0.1:
-    resolution: {integrity: sha512-JWdtjdX8e0e6eMehAZsdJvBMvHn/pVQGYUjgzc1ILFH0vtcffb9R7XIEAqfYgEeaVJVCOSP4+dxCius+ciW0RA==}
 
   cache-manager@5.7.6:
     resolution: {integrity: sha512-wBxnBHjDxF1RXpHCBD6HGvKER003Ts7IIm0CHpggliHzN1RZditb7rXoduE1rplc2DEFYKxhLKgFuchXMJje9w==}
@@ -1061,10 +1035,6 @@ packages:
   libphonenumber-js@1.11.5:
     resolution: {integrity: sha512-TwHR5BZxGRODtAfz03szucAkjT5OArXr+94SMtAM2pYXIlQNVMrxvb6uSCbnaJJV6QXEyICk7+l6QPgn72WHhg==}
 
-  libsignal@https://codeload.github.com/adiwajshing/libsignal-node/tar.gz/11dbd962ea108187c79a7c46fe4d6f790e23da97:
-    resolution: {tarball: https://codeload.github.com/adiwajshing/libsignal-node/tar.gz/11dbd962ea108187c79a7c46fe4d6f790e23da97}
-    version: 2.0.1
-
   link-preview-js@3.0.13:
     resolution: {integrity: sha512-6WeGlt+jnh9s8mTl4fOBtAvb9JYHhIoPsB+sKZKE/cStaHyPRNN9Y8bKL3qKvBlVQEe8pZ+d49A6kJ89oclIvw==}
 
@@ -1096,10 +1066,6 @@ packages:
   lru-cache@11.0.0:
     resolution: {integrity: sha512-Qv32eSV1RSCfhY3fpPE2GNZ8jgM9X7rdAfemLWqTUxwiyIC4jJ6Sy0fZ8H+oLWevO6i4/bizg7c8d8i6bxrzbA==}
     engines: {node: 20 || >=22}
-
-  lru-cache@7.18.3:
-    resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
-    engines: {node: '>=12'}
 
   media-typer@1.1.0:
     resolution: {integrity: sha512-aisnrDP4GNe06UcKFnV5bfMNPBUw4jsLGaWwWfnH3v02GnBuXX2MCVn5RbrWo0j3pczUilYblq7fQ7Nw2t5XKw==}
@@ -2199,33 +2165,6 @@ snapshots:
       '@wasm-audio-decoders/common': 9.0.5
       codec-parser: 2.4.3
 
-  '@whiskeysockets/baileys@6.7.5(jimp@0.16.1)(link-preview-js@3.0.13)(qrcode-terminal@0.12.0)':
-    dependencies:
-      '@adiwajshing/keyed-db': 0.2.4
-      '@hapi/boom': 9.1.4
-      async-lock: 1.4.1
-      audio-decode: 2.2.0
-      axios: 1.7.3
-      cache-manager: 4.0.1
-      futoin-hkdf: 1.5.3
-      libphonenumber-js: 1.11.5
-      libsignal: https://codeload.github.com/adiwajshing/libsignal-node/tar.gz/11dbd962ea108187c79a7c46fe4d6f790e23da97
-      music-metadata: 7.14.0
-      node-cache: 5.1.2
-      pino: 7.11.0
-      protobufjs: 7.3.2
-      uuid: 10.0.0
-      ws: 8.18.0
-    optionalDependencies:
-      jimp: 0.16.1
-      link-preview-js: 3.0.13
-      qrcode-terminal: 0.12.0
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - supports-color
-      - utf-8-validate
-
   '@whiskeysockets/baileys@6.7.9(eslint@8.57.1)(jimp@0.16.1)(link-preview-js@3.0.13)(qrcode-terminal@0.12.0)(typescript@5.5.4)':
     dependencies:
       '@adiwajshing/keyed-db': 0.2.4
@@ -2309,8 +2248,6 @@ snapshots:
 
   async@0.2.10: {}
 
-  async@3.2.3: {}
-
   asynckit@0.4.0: {}
 
   atomic-sleep@1.0.0: {}
@@ -2391,12 +2328,6 @@ snapshots:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
-
-  cache-manager@4.0.1:
-    dependencies:
-      async: 3.2.3
-      lodash.clonedeep: 4.5.0
-      lru-cache: 7.18.3
 
   cache-manager@5.7.6:
     dependencies:
@@ -2881,11 +2812,6 @@ snapshots:
 
   libphonenumber-js@1.11.5: {}
 
-  libsignal@https://codeload.github.com/adiwajshing/libsignal-node/tar.gz/11dbd962ea108187c79a7c46fe4d6f790e23da97:
-    dependencies:
-      curve25519-js: 0.0.4
-      protobufjs: 6.8.8
-
   link-preview-js@3.0.13:
     dependencies:
       abort-controller: 3.0.0
@@ -2925,8 +2851,6 @@ snapshots:
   lru-cache@10.4.3: {}
 
   lru-cache@11.0.0: {}
-
-  lru-cache@7.18.3: {}
 
   media-typer@1.1.0: {}
 

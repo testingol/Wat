@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@mengkodingan/ckptw": "^4.4.4",
-    "@whiskeysockets/baileys": "^6.7.5",
     "axios": "^1.7.3",
     "better-sqlite3": "^11.8.1",
     "dotenv": "^16.4.5",
