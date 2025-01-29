@@ -17,5 +17,13 @@ module.exports = {
     sticker: {
         pack: 'npmjs.com/@mengkodingan/ckptw',
         author: 'github.com/mengkodingan/ckptw'
+    },
+    message: {
+        cooldown: "⏰ Cooldown! Mohon tunggu selama {timeleft}.",
+        invalidUsage: "❌ Contoh penggunaan: {prefix}{command} {args}",
+        error: "❌ Terjadi kesalahan saat menjalankan perintah.",
+        onlyOwner: "❌ Perintah ini hanya bisa dijalankan oleh pemilik bot.",
+        onlyGroup: "❌ Perintah ini hanya bisa dijalankan di dalam grup.",
+        maxCharacter: "❌ Teks terlalu panjang! Maksimal {max_character} karakter.",
     }
 }
